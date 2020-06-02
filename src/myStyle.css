@@ -7,13 +7,12 @@ code {
 }
 .filter {
   position: relative;
-  /*background-color: hsl(209, 23%, 22%);*/
   margin-top: 22px;
   height: 60px;
 }
 #search {
   box-sizing: border-box;
-  border: 1px solid #hhh;
+  border: 1px solid hhh;
   border-radius: 4px;
   font-size: 16px;
   background-color: hsl(209, 23%, 22%);
