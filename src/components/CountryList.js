@@ -1,15 +1,14 @@
 import React from 'react'
-import Country from './Country'
+
 import { Card } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 const CountryList = ({ countriesToShow, setChosenCountry }) => {
   switch (true) {
     case countriesToShow.length > 10: {
       const countriesToDisplay = countriesToShow.slice(0, 8)
       return (
-        //<p>Please add a name</p>
         <div className="grid-container">
           <Container>
             <Row xs="1" md="4">
@@ -149,46 +148,3 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
 }
 
 export default CountryList
-/*
-        <div className="grid-item">
-          <h2>{countriesToShow[0].name}</h2>
-          <Link to="/country">
-            <button
-              onClick={() => {
-                setChosenCountry(countriesToShow[0].name)
-              }}
-            >
-              show
-            </button>
-          </Link>
-        </div>
-        //<Route path="/country">
-        //<Country countriesToShow={countriesToShow} />
-        // </Route>
-        /*
-        <div>
-          <h2>{countriesToShow[0].name}</h2>
-          <p>capital {countriesToShow[0].capital}</p>
-          <p>population {countriesToShow[0].population}</p>
-          <h2>languages</h2>
-          <ul>
-            {countriesToShow[0].languages.map((lan) => {
-              return <li key={lan.name}>{lan.name}</li>
-            })}
-          </ul>
-          <img src={countriesToShow[0].flag} width="150px" alt="flag" />
-        </div>
-
-        <div key={country.name} className="grid-item">
-                        <span>{country.name}</span>{' '}
-                        <Link to="/country">
-                          <button
-                            onClick={() => {
-                              setChosenCountry(country.name)
-                            }}
-                          >
-                            show
-                          </button>
-                        </Link>
-                      </div>
-        */

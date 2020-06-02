@@ -1,6 +1,4 @@
 import React from 'react'
-import { Button } from 'react-bootstrap'
-import { BrowserRouter as Link } from 'react-router-dom'
 
 const Filter = ({ chosenCountry, handleFilterChange }) => {
   return (
@@ -16,6 +14,3 @@ const Filter = ({ chosenCountry, handleFilterChange }) => {
 }
 
 export default Filter
-/*
-
-      */

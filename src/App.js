@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Redirect,
-  useHistory,
-} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
 import FilterRegion from './components/FilterRegion'
 import Filter from './components/Filter'
 import CountryList from './components/CountryList'
@@ -15,7 +8,7 @@ import Country from './components/Country'
 import { useDarkMode } from './useDarkMode'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
-import styled, { ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -26,16 +19,12 @@ const rowFirstStyle = {
   color: 'hsl(0, 0%, 100%)',
 }
 
-const Containers = styled.div`
-  min-height: 100%;
-`
-
 const App = () => {
   const [countries, setCountries] = useState([])
   const [chosenCountry, setChosenCountry] = useState('')
   const [chosenRegion, setChosenRegion] = useState('')
   const [theme, toggleTheme] = useDarkMode()
-  const history = useHistory()
+
   useEffect(() => {
     Axios.get('https://restcountries.eu/rest/v2/all').then((response) => {
       setCountries(response.data)
@@ -126,4 +115,3 @@ const App = () => {
 }
 
 export default App
-//defaultOption="Filter by Region"

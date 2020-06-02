@@ -16,19 +16,14 @@ code {
   border-radius: 4px;
   font-size: 16px;
   background-color: hsl(209, 23%, 22%);
-  /*background-image: url('searchicon.png');*/
+
   background-position: 10px 10px;
   background-repeat: no-repeat;
   padding: 12px 20px 12px 40px;
   position: absolute;
 
   margin-top: 12px;
-  /*border: 1px solid #ccc;*/
 }
-
-/*align-items: 'center';*/
-/*justify-content: 'space-between';*/
-/* The container must be positioned relative: */
 
 .grid-container {
   margin-top: 150px;
@@ -36,7 +31,6 @@ code {
   padding: 10px;
 }
 .grid-item {
-  /*position: relative;*/
   margin-bottom: 50px;
   background-color: aquamarine;
   border: 1px solid rgba(0, 0, 0, 0.8);

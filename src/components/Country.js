@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Link } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Image } from 'react-bootstrap'
 
@@ -64,11 +64,3 @@ const Country = ({ countriesToShow, setChosenCountry }) => {
 }
 
 export default Country
-/*
-<h2>languages</h2>
-        <ul>
-          {countriesToShow[0].languages.map((lan) => {
-            return <li key={lan.name}>{lan.name}</li>
-          })}
-        </ul>
-        */

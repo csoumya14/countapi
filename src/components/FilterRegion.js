@@ -51,27 +51,5 @@ const FilterRegion = ({ chosenRegion, handleRegionChange }) => {
     </div>
   )
 }
-/*
-const FilterRegion = ({ chosenRegion, handleRegionChange, handleSubmit, defaultOption }) => {
-  return (
-    <div className="regionFilter">
-      <form onSubmit={handleSubmit}>
-        <label className="dropdown">
-          <select value={chosenRegion} onChange={handleRegionChange}>
-            <option id="dropdownContent" value=" ">
-              {defaultOption}
-            </option>
-            <option value="Asia">Asia</option>
-            <option value="Europe">Europe</option>
-            <option value="America">America</option>
-            <option value="Oceania">Oceania</option>
-            <option value="Africa">Africa</option>
-          </select>
-        </label>
-      </form>
-    </div>
-  )
-}
-*/
 
 export default FilterRegion
