@@ -50,7 +50,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Container>
           <Row style={rowFirstStyle}>
             <Col>
