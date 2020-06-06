@@ -1,54 +1,90 @@
-import React from 'react'
-import Select from 'react-select'
+import React, { useState } from 'react'
 
-const options = [
-  { value: 'Asia', label: 'Asia' },
-  { value: 'Europe', label: 'Europe' },
-  { value: 'America', label: 'America' },
-  { value: 'Oceania', label: 'Oceania' },
-  { value: 'Africa', label: 'Africa' },
-]
+import styled from 'styled-components'
 
-const customStyles = {
-  container: (provided, state) => ({
-    marginTop: '12px',
-    ...provided,
-    className: 'float-md-right',
-    border: state.isFocused ? null : null,
-    transition: 'border-color 0.2s ease, box-shadow 0.2s ease, padding 0.2s ease',
-    '&:hover': {
-      boxShadow: '0 2px 4px 0 rgba(41, 56, 78, 0.1)',
-    },
-  }),
-  option: (provided, state) => ({
-    ...provided,
-    className: 'float-right',
-    backgroundColor: 'hsl(209, 23%, 22%)',
-    color: 'white',
-  }),
-  control: (base, state) => ({
-    ...base,
-    className: 'float-md-right',
-    background: 'hsl(209, 23%, 22%)',
-  }),
-  valueContainer: (base, state) => ({
-    ...base,
-    className: 'float-right',
-    background: 'hsl(209, 23%, 22%)',
-  }),
-}
+const Main = styled.div`
+  font-family: sans-serif;
 
-const FilterRegion = ({ chosenRegion, handleRegionChange }) => {
+  width: 10.5em;
+
+  float: right;
+
+  margin-bottom: 0.8em;
+`
+
+const DropDownContainer = styled.div`
+  width: 10.5em;
+  border: 1px solid hhh;
+  margin-top: 13px;
+`
+const DropDownHeader = styled.div`
+  box-sizing: border-box;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
+
+  border-radius: 4px;
+
+  font-weight: 300;
+  font-size: 14px;
+  text-align: center;
+
+  padding: 12px 20px 12px 40px;
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.background};
+`
+const DropDownListContainer = styled.div``
+const DropDownList = styled.ul`
+  padding: 0;
+  margin: 0;
+  padding-left: 1em;
+  background: ${({ theme }) => theme.background};
+
+  border: 2px solid #e5e5e5;
+  box-sizing: border-box;
+  color: ${({ theme }) => theme.text};
+  font-size: 14px;
+  font-weight: 300;
+  &:first-child {
+    padding-top: 0.8em;
+  }
+`
+const ListItem = styled.li`
+  list-style: none;
+  margin-bottom: 0.8em;
+`
+const Options = ['Asia', 'Europe', 'America', 'Oceania', 'Africa']
+const FilterRegion = ({ setChosenRegion, chosenRegion }) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const onOptionClicked = (value) => () => {
+    setChosenRegion(value)
+    setIsOpen(false)
+  }
+
   return (
-    <div style={{ maxWidth: '40% ', marginLeft: '210px', marginRight: '0px' }}>
-      <Select
-        placeholder="Filter by Region"
-        styles={customStyles}
-        options={options}
-        onChange={handleRegionChange}
-        value={options.filter((obj) => obj.value === chosenRegion)}
-      />
-    </div>
+    <Main>
+      <DropDownContainer>
+        <DropDownHeader
+          onClick={() => {
+            setIsOpen(!isOpen)
+          }}
+        >
+          {chosenRegion || 'Filter by Region'}
+        </DropDownHeader>
+      </DropDownContainer>
+      {isOpen && (
+        <DropDownListContainer>
+          <DropDownList>
+            {Options.map((option) => (
+              <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
+                {option}
+              </ListItem>
+            ))}
+          </DropDownList>
+        </DropDownListContainer>
+      )}
+    </Main>
   )
 }
 

@@ -2,9 +2,42 @@ import React from 'react'
 
 import { Card } from 'react-bootstrap'
 import { Button } from 'react-bootstrap'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
+
 import { Container, Row, Col } from 'react-bootstrap'
-const CountryList = ({ countriesToShow, setChosenCountry }) => {
+
+const CardStyle = {
+  width: '10rem',
+  marginBottom: '50px',
+  marginRight: '10px',
+  background: 'hsl(255, 20%, 50%)',
+}
+
+const CardTextStyle = {
+  fontSize: '14px',
+  width: '100%',
+  color: 'hsl(200, 15%, 8%)',
+  lineHeight: '1.3',
+}
+
+const CardTitleStyle = {
+  marginTop: '0px',
+  paddingTop: '0px',
+  fontSize: '14px',
+  width: '100%',
+  height: '50%',
+  color: 'hsl(200, 15%, 8%)',
+  fontWeight: '600',
+}
+
+const ButtonStyle = {
+  marginTop: '0px',
+  padding: '0px 0px 5px 0px',
+}
+
+const CountryList = ({ countriesToShow, setChosenCountry, handleClick }) => {
+  const history = useHistory()
+
   switch (true) {
     case countriesToShow.length > 10: {
       const countriesToDisplay = countriesToShow.slice(0, 8)
@@ -15,32 +48,11 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
               {countriesToDisplay.map((country) => {
                 return (
                   <Col key={country.name}>
-                    <Card
-                      style={{
-                        width: '12rem',
-                        height: '20rem',
-                        marginBottom: '50px',
-                        marginRight: '10px',
-                      }}
-                    >
-                      <Card.Img variant="top" src={country.flag} style={{ height: '10rem' }} />
+                    <Card style={CardStyle}>
+                      <Card.Img variant="top" src={country.flag} style={{ height: '8rem' }} />
                       <Card.Body>
-                        <Card.Title
-                          style={{
-                            fontSize: '18px',
-                            width: '100%',
-                            color: 'hsl(200, 15%, 8%)',
-                          }}
-                        >
-                          {country.name}
-                        </Card.Title>
-                        <Card.Text
-                          style={{
-                            fontSize: '10px',
-                            width: '80%',
-                            color: 'hsl(200, 15%, 8%)',
-                          }}
-                        >
+                        <Card.Title style={CardTitleStyle}>{country.name}</Card.Title>
+                        <Card.Text style={CardTextStyle}>
                           Population:{country.population}
                           {'\n'}
                           Region:{country.region}
@@ -48,17 +60,17 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
                           Capital:{country.capital}
                           {'\n'}
                         </Card.Text>
-                        <Link to="/country">
-                          <Button
-                            onClick={() => {
-                              setChosenCountry(country.name)
-                            }}
-                            variant="secondary"
-                            size="sm"
-                          >
-                            show
-                          </Button>
-                        </Link>
+                        <Button
+                          onClick={() => {
+                            setChosenCountry(country.name)
+                            history.push('/country')
+                          }}
+                          variant="outline-info"
+                          size="sm"
+                          style={ButtonStyle}
+                        >
+                          show
+                        </Button>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -77,24 +89,29 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
               {countriesToShow.map((country) => {
                 return (
                   <Col key={country.name}>
-                    <Card style={{ width: '15rem', marginBottom: '50px' }}>
-                      <Card.Img variant="top" src={country.flag} style={{ height: '10rem' }} />
+                    <Card style={CardStyle}>
+                      <Card.Img variant="top" src={country.flag} style={{ height: '8rem' }} />
                       <Card.Body>
-                        <Card.Title>{country.name}</Card.Title>
-                        <Card.Text>
-                          <div>Population:{country.population}</div>
-                          <div>Region:{country.region}</div>
-                          <div>Capital:{country.capital}</div>
+                        <Card.Title style={CardTitleStyle}>{country.name}</Card.Title>
+                        <Card.Text style={CardTextStyle}>
+                          Population:{country.population}
+                          {'\n'}
+                          Region:{country.region}
+                          {'\n'}
+                          Capital:{country.capital}
+                          {'\n'}
                         </Card.Text>
-                        <Link to="/country">
-                          <Button
-                            onClick={() => {
-                              setChosenCountry(country.name)
-                            }}
-                          >
-                            show
-                          </Button>
-                        </Link>
+
+                        <Button
+                          onClick={() => {
+                            setChosenCountry(country.name)
+                            history.push('/country')
+                          }}
+                          variant="outline-info"
+                          size="sm"
+                        >
+                          show
+                        </Button>
                       </Card.Body>
                     </Card>
                   </Col>
@@ -112,28 +129,33 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
           <Container>
             <Row md="1">
               <Col md={{ span: 3, offset: 5 }} key={countriesToShow[0].name}>
-                <Card style={{ width: '15rem', marginBottom: '50px' }}>
+                <Card style={CardStyle}>
                   <Card.Img
                     variant="top"
                     src={countriesToShow[0].flag}
-                    style={{ height: '10rem' }}
+                    style={{ height: '8rem' }}
                   />
                   <Card.Body>
-                    <Card.Title>{countriesToShow[0].name}</Card.Title>
-                    <Card.Text>
-                      <div>Population:{countriesToShow[0].population}</div>
-                      <div>Region:{countriesToShow[0].region}</div>
-                      <div>Capital:{countriesToShow[0].capital}</div>
+                    <Card.Title style={CardTitleStyle}>{countriesToShow[0].name}</Card.Title>
+                    <Card.Text style={CardTextStyle}>
+                      Population:{countriesToShow[0].population}
+                      {'\n'}
+                      Region:{countriesToShow[0].region}
+                      {'\n'}
+                      Capital:{countriesToShow[0].capital}
+                      {'\n'}
                     </Card.Text>
-                    <Link to="/country">
-                      <Button
-                        onClick={() => {
-                          setChosenCountry(countriesToShow[0].name)
-                        }}
-                      >
-                        show
-                      </Button>
-                    </Link>
+
+                    <Button
+                      onClick={() => {
+                        setChosenCountry(countriesToShow[0].name)
+                        history.push('/country')
+                      }}
+                      variant="outline-info"
+                      size="sm"
+                    >
+                      show
+                    </Button>
                   </Card.Body>
                 </Card>
               </Col>

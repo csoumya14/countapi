@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
-import { BrowserRouter as Router, Switch, Route, useHistory } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import FilterRegion from './components/FilterRegion'
 import Filter from './components/Filter'
 import CountryList from './components/CountryList'
 import Country from './components/Country'
 import { useDarkMode } from './useDarkMode'
-import { Container, Row, Col } from 'react-bootstrap'
-import { Button } from 'react-bootstrap'
+import { Container, Row, Col, Button } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
@@ -36,10 +35,6 @@ const App = () => {
     setChosenCountry(event.target.value)
   }
 
-  const handleRegionChange = (event) => {
-    setChosenRegion(event.value)
-  }
-
   const regionOfCountries = countries.filter((country) =>
     country.region.toLowerCase().includes(chosenRegion.toLowerCase()),
   )
@@ -50,7 +45,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <Router basename="/">
+      <Router basename={process.env.PUBLIC_URL}>
         <Container>
           <Row style={rowFirstStyle}>
             <Col>
@@ -72,41 +67,34 @@ const App = () => {
               </Button>
             </Col>
           </Row>
-          <div>
-            <Switch>
-              <Route path="/country">
-                <Row>
-                  <Col>
-                    <Country
-                      countriesToShow={countriesToShow}
-                      setChosenCountry={setChosenCountry}
-                    />
-                  </Col>
-                </Row>
-              </Route>
-              <Route path="/">
-                <Row>
-                  <Col sm={{ size: 'auto' }}>
-                    <Filter chosenCountry={chosenCountry} handleFilterChange={handleFilterChange} />
-                  </Col>
-                  <Col sm={{ size: 'auto' }}>
-                    <FilterRegion
-                      handleRegionChange={handleRegionChange}
-                      chosenRegion={chosenRegion}
-                    />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col sm={{ size: 'auto' }}>
-                    <CountryList
-                      countriesToShow={countriesToShow}
-                      setChosenCountry={setChosenCountry}
-                    />
-                  </Col>
-                </Row>
-              </Route>
-            </Switch>
-          </div>
+
+          <Switch>
+            <Route path="/country">
+              <Row>
+                <Col>
+                  <Country countriesToShow={countriesToShow} setChosenCountry={setChosenCountry} />
+                </Col>
+              </Row>
+            </Route>
+            <Route path="/">
+              <Row>
+                <Col sm={{ size: 'auto' }}>
+                  <Filter chosenCountry={chosenCountry} handleFilterChange={handleFilterChange} />
+                </Col>
+                <Col sm={{ size: 'auto' }}>
+                  <FilterRegion chosenRegion={chosenRegion} setChosenRegion={setChosenRegion} />
+                </Col>
+              </Row>
+              <Row>
+                <Col sm={{ size: 'auto' }}>
+                  <CountryList
+                    countriesToShow={countriesToShow}
+                    setChosenCountry={setChosenCountry}
+                  />
+                </Col>
+              </Row>
+            </Route>
+          </Switch>
         </Container>
       </Router>
       <GlobalStyles />

@@ -1,22 +1,24 @@
 import React from 'react'
-import { BrowserRouter as Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Image } from 'react-bootstrap'
+import { Image, Button } from 'react-bootstrap'
 
 const Country = ({ countriesToShow, setChosenCountry }) => {
+  const history = useHistory()
   return (
     <Container>
       <Row>
         <Col md={4}>
-          <Link to="/">
-            <button
-              onClick={() => {
-                setChosenCountry('')
-              }}
-            >
-              Back
-            </button>
-          </Link>
+          <Button
+            onClick={() => {
+              setChosenCountry('')
+              history.push('/')
+            }}
+            variant="secondary"
+            size="sm"
+          >
+            Back
+          </Button>
         </Col>
       </Row>
       <Row md={3} xs={1}>
