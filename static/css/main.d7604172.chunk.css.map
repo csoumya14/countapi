@@ -1,1 +1,0 @@
-{"version":3,"sources":["myStyle.css"],"names":[],"mappings":"AAAA,KACE,QAAS,CACT,uBACF,CAEA,gBACE,gBAAiB,CAEjB,YACF","file":"main.d7604172.chunk.css","sourcesContent":["body {\n  margin: 0;\n  font-family: Nunito Sans;\n}\n\n.grid-container {\n  margin-top: 150px;\n\n  padding: 10px;\n}\n"]}
