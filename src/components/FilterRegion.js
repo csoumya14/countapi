@@ -22,14 +22,13 @@ const DropDownHeader = styled.div`
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
 
   border-radius: 4px;
-
+  font-family: Nunito Sans;
   font-weight: 300;
   font-size: 14px;
   text-align: center;
-
+  margin-right: 15px;
   padding: 12px 20px 12px 40px;
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
+
   color: ${({ theme }) => theme.text};
   background: ${({ theme }) => theme.background};
 `
@@ -68,6 +67,7 @@ const FilterRegion = ({ setChosenRegion, chosenRegion }) => {
         <DropDownHeader
           onClick={() => {
             setIsOpen(!isOpen)
+            setChosenRegion('')
           }}
         >
           {chosenRegion || 'Filter by Region'}
@@ -75,7 +75,7 @@ const FilterRegion = ({ setChosenRegion, chosenRegion }) => {
       </DropDownContainer>
       {isOpen && (
         <DropDownListContainer>
-          <DropDownList>
+          <DropDownList value={chosenRegion}>
             {Options.map((option) => (
               <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
                 {option}

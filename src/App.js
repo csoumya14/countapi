@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import Axios from 'axios'
+
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import FilterRegion from './components/FilterRegion'
 import Filter from './components/Filter'
 import CountryList from './components/CountryList'
 import Country from './components/Country'
+import Titles from './components/Title'
 import { useDarkMode } from './useDarkMode'
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import { ThemeProvider } from 'styled-components'
 import { lightTheme, darkTheme } from './theme'
 import { GlobalStyles } from './global'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMoon } from '@fortawesome/free-solid-svg-icons'
-
-const rowFirstStyle = {
-  backgroundColor: 'hsl(209, 23%, 22%)',
-  color: 'hsl(0, 0%, 100%)',
-}
 
 const App = () => {
   const [countries, setCountries] = useState([])
@@ -47,27 +42,7 @@ const App = () => {
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Router basename={process.env.PUBLIC_URL}>
         <Container>
-          <Row style={rowFirstStyle}>
-            <Col>
-              <h1 style={{ fontWeight: '800', fontSize: '16px', marginTop: '20px' }}>
-                Where in the world?
-              </h1>
-            </Col>
-            <Col>
-              <Button
-                className="float-right"
-                style={{
-                  background: 'hsl(209, 23%, 22%)',
-                  border: 'none',
-                }}
-                onClick={toggleTheme}
-              >
-                <FontAwesomeIcon icon={faMoon} />
-                Dark Mode
-              </Button>
-            </Col>
-          </Row>
-
+          <Titles toggleTheme={toggleTheme} />
           <Switch>
             <Route path="/country">
               <Row>

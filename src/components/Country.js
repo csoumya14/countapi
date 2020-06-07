@@ -1,7 +1,41 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Container, Row, Col } from 'react-bootstrap'
-import { Image, Button } from 'react-bootstrap'
+import { Image } from 'react-bootstrap'
+import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
+
+const Main = styled.div`
+  marginTop: '5em' 
+  marginLeft: '50px' 
+  padding: 1em;
+  lineHeight: '1.6'
+  
+`
+const Title = styled.h1`
+  font-family: Nunito Sans;
+  font-size: 16px;
+  font-weight: 800;
+  color: ${({ theme }) => theme.text};
+`
+const Paragraph = styled.div`
+  font-family: Nunito Sans;
+  font-size: 14px;
+  font-weight: 300;
+`
+const Button = styled.button`
+  font-family: Nunito Sans;
+  color: ${({ theme }) => theme.text};
+  background: ${({ theme }) => theme.background};
+  font-weight: 300;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  width: 8.5em;
+  padding: 0.5em;
+  margin-top: 10px;
+`
 
 const Country = ({ countriesToShow, setChosenCountry }) => {
   const history = useHistory()
@@ -14,10 +48,8 @@ const Country = ({ countriesToShow, setChosenCountry }) => {
               setChosenCountry('')
               history.push('/')
             }}
-            variant="secondary"
-            size="sm"
           >
-            Back
+            <FontAwesomeIcon icon={faArrowLeft} /> Back
           </Button>
         </Col>
       </Row>
@@ -26,38 +58,41 @@ const Country = ({ countriesToShow, setChosenCountry }) => {
           <Image src={countriesToShow[0].flag} alt="flag" fluid style={{ marginTop: '50px' }} />
         </Col>
         <Col>
-          <div style={{ marginTop: '80px', marginLeft: '50px' }}>
-            <h2>{countriesToShow[0].name}</h2>
-            <div style={{ fontSize: '11px', lineHeight: '1.6' }}>
-              <div>Native Name: {countriesToShow[0].nativeName}</div>
+          <Main>
+            <Title>{countriesToShow[0].name}</Title>
+            <div>
+              <Paragraph>Native Name: {countriesToShow[0].nativeName}</Paragraph>
 
-              <div>Population: {countriesToShow[0].population}</div>
+              <Paragraph>Population: {countriesToShow[0].population}</Paragraph>
 
-              <div>Region: {countriesToShow[0].region}</div>
+              <Paragraph>Region: {countriesToShow[0].region}</Paragraph>
 
-              <div>Sub Region: {countriesToShow[0].subregion}</div>
+              <Paragraph>Sub Region: {countriesToShow[0].subregion}</Paragraph>
 
-              <div>Capital: {countriesToShow[0].capital}</div>
+              <Paragraph>Capital: {countriesToShow[0].capital}</Paragraph>
               {'\n'}
             </div>
-          </div>
+          </Main>
         </Col>
         <Col>
-          <div style={{ marginTop: '125px' }}>
-            <div style={{ fontSize: '11px', lineHeight: '1.6' }}>
-              <div>Top Level Domain:{countriesToShow[0].topLevelDomain}</div>
-              <div>
+          <div>
+            <Main>
+              <Paragraph>
+                Top Level Domain:
+                {countriesToShow[0].topLevelDomain}
+              </Paragraph>
+              <Paragraph>
                 Currencies: {countriesToShow[0].currencies.map((currency) => currency.name)}
-              </div>
-              <div>
+              </Paragraph>
+              <Paragraph>
                 Languages:{' '}
                 {countriesToShow[0].languages
                   .map(function (lan) {
                     return lan.name
                   })
                   .join(',')}
-              </div>
-            </div>
+              </Paragraph>
+            </Main>
           </div>
         </Col>
       </Row>

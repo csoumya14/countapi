@@ -35,7 +35,7 @@ const ButtonStyle = {
   padding: '0px 0px 5px 0px',
 }
 
-const CountryList = ({ countriesToShow, setChosenCountry, handleClick }) => {
+const CountryList = ({ countriesToShow, setChosenCountry }) => {
   const history = useHistory()
 
   switch (true) {
