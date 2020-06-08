@@ -6,8 +6,9 @@ const Main = styled.div`
   font-family: sans-serif;
 
   width: 10.5em;
-
-  float: right;
+  @media (min-width: 1024px) {
+    float: right;
+  }
 
   margin-bottom: 0.8em;
 `
@@ -26,11 +27,17 @@ const DropDownHeader = styled.div`
   font-weight: 300;
   font-size: 14px;
   text-align: center;
-  margin-right: 15px;
+
+  margin-left: 14px;
+
   padding: 12px 20px 12px 40px;
 
   color: ${({ theme }) => theme.text};
   background: ${({ theme }) => theme.background};
+  @media (min-width: 1024px) {
+    margin-right: 15px;
+    padding: 12px 10px 12px 10px;
+  }
 `
 const DropDownListContainer = styled.div``
 const DropDownList = styled.ul`

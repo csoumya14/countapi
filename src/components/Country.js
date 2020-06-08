@@ -6,12 +6,8 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
-const Main = styled.div`
-  marginTop: '5em' 
-  marginLeft: '50px' 
-  padding: 1em;
-  lineHeight: '1.6'
-  
+const MainCol = styled.div`
+  margin-top: 5em;
 `
 const Title = styled.h1`
   font-family: Nunito Sans;
@@ -23,6 +19,7 @@ const Paragraph = styled.div`
   font-family: Nunito Sans;
   font-size: 14px;
   font-weight: 300;
+  color: ${({ theme }) => theme.text};
 `
 const Button = styled.button`
   font-family: Nunito Sans;
@@ -55,10 +52,10 @@ const Country = ({ countriesToShow, setChosenCountry }) => {
       </Row>
       <Row md={3} xs={1}>
         <Col>
-          <Image src={countriesToShow[0].flag} alt="flag" fluid style={{ marginTop: '50px' }} />
+          <Image src={countriesToShow[0].flag} alt="flag" fluid style={{ marginTop: '3em' }} />
         </Col>
         <Col>
-          <Main>
+          <MainCol>
             <Title>{countriesToShow[0].name}</Title>
             <div>
               <Paragraph>Native Name: {countriesToShow[0].nativeName}</Paragraph>
@@ -72,11 +69,11 @@ const Country = ({ countriesToShow, setChosenCountry }) => {
               <Paragraph>Capital: {countriesToShow[0].capital}</Paragraph>
               {'\n'}
             </div>
-          </Main>
+          </MainCol>
         </Col>
         <Col>
           <div>
-            <Main>
+            <MainCol>
               <Paragraph>
                 Top Level Domain:
                 {countriesToShow[0].topLevelDomain}
@@ -92,7 +89,7 @@ const Country = ({ countriesToShow, setChosenCountry }) => {
                   })
                   .join(',')}
               </Paragraph>
-            </Main>
+            </MainCol>
           </div>
         </Col>
       </Row>

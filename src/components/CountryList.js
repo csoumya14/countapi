@@ -10,7 +10,7 @@ const CardStyle = {
   width: '10rem',
   marginBottom: '50px',
   marginRight: '10px',
-  background: 'hsl(255, 20%, 50%)',
+  background: '#737373',
 }
 
 const CardTextStyle = {
@@ -53,8 +53,6 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
                       <Card.Body>
                         <Card.Title style={CardTitleStyle}>{country.name}</Card.Title>
                         <Card.Text style={CardTextStyle}>
-                          Population:{country.population}
-                          {'\n'}
                           Region:{country.region}
                           {'\n'}
                           Capital:{country.capital}
