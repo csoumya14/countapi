@@ -17,13 +17,15 @@ const Input = styled.input`
 
 const Filter = ({ chosenCountry, handleFilterChange }) => {
   return (
-    <div>
-      <Input
-        value={chosenCountry}
-        onChange={handleFilterChange}
-        placeholder="Search for a country"
-      />
-    </div>
+    <form>
+      <div>
+        <Input
+          value={chosenCountry}
+          onChange={handleFilterChange}
+          placeholder="Search for a country"
+        />
+      </div>
+    </form>
   )
 }
 

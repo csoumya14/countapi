@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Axios from 'axios'
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import countryService from './services/countries'
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom'
 import FilterRegion from './components/FilterRegion'
 import Filter from './components/Filter'
 import CountryList from './components/CountryList'
@@ -15,19 +15,25 @@ import { GlobalStyles } from './global'
 
 const App = () => {
   const [countries, setCountries] = useState([])
+
   const [chosenCountry, setChosenCountry] = useState('')
   const [chosenRegion, setChosenRegion] = useState('')
+
   const [theme, toggleTheme] = useDarkMode()
 
   useEffect(() => {
-    Axios.get('https://restcountries.eu/rest/v2/all').then((response) => {
-      setCountries(response.data)
+    countryService.getAll().then((initialCountries) => {
+      setCountries(initialCountries)
     })
   }, [])
-  console.log('render', countries.length, 'countries')
 
   const handleFilterChange = (event) => {
     setChosenCountry(event.target.value)
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    setChosenCountry('')
   }
 
   const regionOfCountries = countries.filter((country) =>
@@ -54,7 +60,11 @@ const App = () => {
             <Route path="/">
               <Row>
                 <Col sm={{ size: 'auto' }}>
-                  <Filter chosenCountry={chosenCountry} handleFilterChange={handleFilterChange} />
+                  <Filter
+                    chosenCountry={chosenCountry}
+                    handleFilterChange={handleFilterChange}
+                    handleSubmit={handleSubmit}
+                  />
                 </Col>
                 <Col sm={{ size: 'auto' }}>
                   <FilterRegion chosenRegion={chosenRegion} setChosenRegion={setChosenRegion} />
@@ -69,7 +79,14 @@ const App = () => {
                 </Col>
               </Row>
             </Route>
+            <Redirect from="/country" to="/" />
           </Switch>
+          <Row>
+            <Col>
+              <br />
+              <em>Challenge by frontend mentor, coded by Soumya</em>
+            </Col>
+          </Row>
         </Container>
       </Router>
       <GlobalStyles />

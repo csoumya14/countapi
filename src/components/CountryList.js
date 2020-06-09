@@ -35,7 +35,7 @@ const ButtonStyle = {
   padding: '0px 0px 5px 0px',
 }
 
-const CountryList = ({ countriesToShow, setChosenCountry }) => {
+const CountryList = ({ countriesToShow, setChosenCountry, handleSubmit }) => {
   const history = useHistory()
 
   switch (true) {
@@ -107,6 +107,7 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
                           }}
                           variant="outline-info"
                           size="sm"
+                          style={ButtonStyle}
                         >
                           show
                         </Button>
@@ -151,6 +152,7 @@ const CountryList = ({ countriesToShow, setChosenCountry }) => {
                       }}
                       variant="outline-info"
                       size="sm"
+                      style={ButtonStyle}
                     >
                       show
                     </Button>

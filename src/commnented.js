@@ -82,3 +82,10 @@ const Select = styled.select`
   )
   fluid style={{ marginTop: '50px' }}
       */
+/*useEffect(() => {
+    Axios.get('https://restcountries.eu/rest/v2/all').then((response) => {
+      setCountries(response.data)
+    })
+  }, [])
+  console.log('render', countries.length, 'countries')
+  */
